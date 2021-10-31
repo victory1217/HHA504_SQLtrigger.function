@@ -31,14 +31,16 @@ ProcedureCostGrouper = CREATE TABLE VictoriaRodriguez_procedurecostgrouper
 patientUID INT NOT NULL,
 lastname VARCHAR(50) NOT NULL,
 firstname VARCHAR(50) NOT NULL,
+SystolicBloodPressure INT NOT NULL
 procedure_code INT NOT NULL,
-procedure_cost INT NOT NULL);
+procedure_cost INT NOT NULL),;
 
 ##Table can also be created manually and forwarded to SQL schema (See attached Google Collab document for code)
 
 proceduregrouper = pd.DataFrame ({'Patient ID' : ['1111', '2222', '3333', '4444', '5555', '6666', '7777', '8888'], 
                                                     'Last Name' : ['Roberts', 'Gonzalez', 'McMillin', 'Silva', 'Anthony', 'Washington', 'Martinez', 'Rodriguez'], 
                                                     'First Name' : ['Veronica', 'Jacqueline', 'Miranda', 'Joshua', 'Xavier', 'Mike', 'Jennifer', 'Allen'], 
+                                                    'SystolicBloodPressure':['121', '120.5', '140', '131', '138.7', '119', '142', '118'],
                                                     'Procedure Code': ['169553002', '117015009', '301807007', '430193006', '288086009', '76601001', '5880005', '11466000'], 
                                                     'Procedure Cost' : ['14896.56', '2070.44', '12914.35', '416.69', '11354.55', '3001.57', '516.65', '612.34']})
 
