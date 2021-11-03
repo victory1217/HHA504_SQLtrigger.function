@@ -16,17 +16,21 @@ from sqlalchemy import create_engine
 
 ##Step 2 : Connect to SQL 
 
-MYSQL_HOSTNAME = 'INSERT_HERE'
-MYSQL_USER = 'INSERT_HERE'
-MYSQL_PASSWORD = 'INSERT_HERE'
-MYSQL_DATABASE = 'INSERT_HERE'
+MYSQL_HOSTNAME = '20.62.193.224'
+MYSQL_USER = 'INSERT HERE'
+MYSQL_PASSWORD = 'INSERT HERE'
+MYSQL_DATABASE = 'ahi'
 
 connection_string = f'mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOSTNAME}:3305/{MYSQL_DATABASE}'
 engine = create_engine(connection_string)
 
-##Step 3 : Create a table within the synthea schema 
+TABLENAME = MYSQL_USER + 'proceduregrouper'
 
-ProcedureCostGrouper = CREATE TABLE VictoriaRodriguez_procedurecostgrouper 
+proceduregrouper.to_sql(TABLENAME, con=engine)
+
+##Step 3 : Create a table within the ahi schema 
+
+Procedure_Grouper = CREATE TABLE userprocedurecostgrouper 
 (id INT AUTO_INCREMENT PRIMARY KEY,
 patientUID INT NOT NULL,
 lastname VARCHAR(50) NOT NULL,
@@ -51,7 +55,7 @@ proceduregrouper.to_sql(TABLENAME, con=engine)
 ##Step 4 : Create trigger within newly created table 
 
 DELIMITER $$
-CREATE TRIGGER systolic BEFORE INSERT ON proceduregrouper
+CREATE TRIGGER systolic BEFORE INSERT ON userproceduregrouper
 FOR EACH ROW 
 BEGIN
     IF NEW.SystolicBloodPressure >= 120 THEN 
@@ -59,7 +63,6 @@ BEGIN
     SET MESSAGE_TEXT = 'ERROR: Systolic blood pressure must be 120 mm Hg or below for procedure!';
     END IF; 
 END; $$
-DELIMITER;
 
 ##Step 5 : Create function within newly created table 
 
@@ -84,6 +87,6 @@ SET procedureCost = 'cheap';
 END IF;
 -- return the procedure cost category
 RETURN (procedureCost);
-END$$
-DELIMITER ;
+END; $$
+
   
