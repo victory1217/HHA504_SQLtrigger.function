@@ -30,7 +30,7 @@ proceduregrouper.to_sql(TABLENAME, con=engine)
 
 ##Step 3 : Create a table within the ahi schema 
 
-Procedure_Grouper = CREATE TABLE userprocedurecostgrouper 
+proceduregrouper = CREATE TABLE userprocedurecostgrouper 
 (id INT AUTO_INCREMENT PRIMARY KEY,
 patientUID INT NOT NULL,
 lastname VARCHAR(50) NOT NULL,
