@@ -24,10 +24,6 @@ MYSQL_DATABASE = 'ahi'
 connection_string = f'mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOSTNAME}:3305/{MYSQL_DATABASE}'
 engine = create_engine(connection_string)
 
-TABLENAME = MYSQL_USER + 'proceduregrouper'
-
-proceduregrouper.to_sql(TABLENAME, con=engine)
-
 ##Step 3 : Create a table within the ahi schema 
 
 proceduregrouper = CREATE TABLE userprocedurecostgrouper 
@@ -39,7 +35,7 @@ SystolicBloodPressure INT NOT NULL
 procedure_code INT NOT NULL,
 procedure_cost INT NOT NULL),;
 
-##Table can also be created manually and forwarded to SQL schema (See attached Google Collab document for code)
+##Table can be created manually and forwarded to SQL schema (See attached Google Collab document for code)
 
 proceduregrouper = pd.DataFrame ({'Patient ID' : ['1111', '2222', '3333', '4444', '5555', '6666', '7777', '8888'], 
                                                     'Last Name' : ['Roberts', 'Gonzalez', 'McMillin', 'Silva', 'Anthony', 'Washington', 'Martinez', 'Rodriguez'], 
